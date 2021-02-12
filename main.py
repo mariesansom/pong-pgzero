@@ -14,14 +14,14 @@ PADDLE1 = Rect((20, 20),(10, PADDLE_LENGTH))
 PADDLE2 = Rect((570, 20),(10, PADDLE_LENGTH))
 
 def update():
-    if keyboard.down and PADDLE1.y + PADDLE_LENGTH < HEIGHT - 20:
+    if keyboard.s and PADDLE1.y + PADDLE_LENGTH < HEIGHT - 20:
         PADDLE1.y += 10
-    elif keyboard.up and PADDLE1.y > 20:
+    elif keyboard.w and PADDLE1.y > 20:
         PADDLE1.y -= 10
     
-    if keyboard.a and PADDLE2.y + PADDLE_LENGTH < HEIGHT - 20:
+    if keyboard.down and PADDLE2.y + PADDLE_LENGTH < HEIGHT - 20:
          PADDLE2.y += 10
-    elif keyboard.c and PADDLE2.y > 20:
+    elif keyboard.up and PADDLE2.y > 20:
         PADDLE2.y -= 10
 
 def draw():
