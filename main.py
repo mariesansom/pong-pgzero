@@ -10,7 +10,9 @@ BLUE = 0, 0, 255
 RED = 255, 0, 0 
 
 class Ball(ZRect):
-    pass
+    def __init__(self, *args):
+        ZRect.__init__(self, *args)
+        self.active = False
 
 ball = Ball((WIDTH/2, HEIGHT/2), (10,10))
 PADDLE_LENGTH = 100
@@ -28,13 +30,22 @@ def update():
     elif keyboard.up and PADDLE2.y > 20:
         PADDLE2.y -= 10
 
-    if keyboard.space:
-        # ball.y += 10
-        # ball.x += 10
+    if not ball.active:
+
+        if keyboard.space:
+            ball.active = True
+            print(f'ball.active: {ball.active}')
+            # ball.y += 10
+            #if ball.x += 10
+
+    if ball.active:
+        if keyboard.space:
+            ball.active = False
+            print(f'ball.active: {ball.active}')
+
         ball.direction = 10, 10
         ball.speed = 3
         ball.move_ip(ball.speed * 10, ball.speed * 10)
-
 
 def draw():
     screen.clear()
