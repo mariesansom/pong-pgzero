@@ -9,11 +9,19 @@ WHITE = 255, 255, 255
 BLUE = 0, 0, 255
 RED = 255, 0, 0 
 
+class Game():
+    def __init__(self):
+        self.speed = 3
+        self.score = 0
+
 class Ball(ZRect):
     def __init__(self, *args):
         ZRect.__init__(self, *args)
         self.active = False
+        self.dx = 10
+        self.dy = 10
 
+game = Game()
 ball = Ball((WIDTH/2, HEIGHT/2), (10,10))
 PADDLE_LENGTH = 100
 PADDLE1 = Rect((20, 20),(10, PADDLE_LENGTH))
@@ -43,8 +51,8 @@ def update():
             ball.active = False
             print(f'ball.active: {ball.active}')
 
-        ball.direction = 10, 10
-        ball.speed = 3
+        ball.direction = ball.dx, ball.dy
+        ball.speed = game.speed
         ball.move_ip(ball.speed * 10, ball.speed * 10)
 
 def draw():
