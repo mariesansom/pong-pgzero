@@ -21,6 +21,9 @@ class Ball(ZRect):
         self.dx = 10
         self.dy = 10
 
+# music.play('seventies.mp3')
+#music.set_volume(0.45)
+
 game = Game()
 ball = Ball((WIDTH/2, HEIGHT/2), (10,10))
 PADDLE_LENGTH = 100
