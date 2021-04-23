@@ -9,17 +9,21 @@ WHITE = 255, 255, 255
 BLUE = 0, 0, 255
 RED = 255, 0, 0 
 
+SPEED = 10
+DY = SPEED
+DX = SPEED
+
 class Game():
     def __init__(self):
         self.speed = 3
         self.score = 0
 
 class Ball(ZRect):
-    def __init__(self, *args):
+    def __init__(self, *args, dx=DX, dy=DY):
         ZRect.__init__(self, *args)
         self.active = False
-        self.dx = 10
-        self.dy = 10
+        self.dx = dx
+        self.dy = dy
 
 # music.play('seventies.mp3')
 #music.set_volume(0.45)
