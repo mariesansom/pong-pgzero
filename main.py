@@ -46,6 +46,7 @@ def update():
         PADDLE2.y -= 10
 
     if not ball.active:
+    # if ball.active == False:
 
         if keyboard.space:
             ball.active = True
@@ -54,7 +55,8 @@ def update():
             #if ball.x += 10
 
     if ball.active:
-        if keyboard.space:
+        
+        if keyboard.b:
             ball.active = False
             print(f'ball.active: {ball.active}')
 
