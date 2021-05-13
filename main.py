@@ -1,4 +1,5 @@
 import pgzrun as pgz
+import random
 
 WIDTH = 600
 HEIGHT = 500
@@ -9,27 +10,28 @@ WHITE = 255, 255, 255
 BLUE = 0, 0, 255
 RED = 255, 0, 0 
 
-SPEED = 10
-DY = SPEED
+SPEED = 1
+DY = -SPEED
 DX = SPEED
 
 class Game():
     def __init__(self):
-        self.speed = 3
+        self.speed = SPEED
         self.score = 0
 
 class Ball(ZRect):
-    def __init__(self, *args, dx=DX, dy=DY):
+    def __init__(self, *args, dx, dy):
         ZRect.__init__(self, *args)
         self.active = False
-        self.dx = dx
-        self.dy = dy
+        self.dx = dx * random.normalvariate(1, 0.2)
+        self.dy = dy * random.normalvariate(0.0, 0.75)
+        self.speed = SPEED
 
 # music.play('seventies.mp3')
 #music.set_volume(0.45)
 
 game = Game()
-ball = Ball((WIDTH/2, HEIGHT/2), (10,10))
+ball = Ball((WIDTH/2, HEIGHT/2), (10, 10), dx=DX, dy=DY)
 PADDLE_LENGTH = 100
 PADDLE1 = Rect((20, 20),(10, PADDLE_LENGTH))
 PADDLE2 = Rect((570, 20),(10, PADDLE_LENGTH))
@@ -48,21 +50,28 @@ def update():
     if not ball.active:
     # if ball.active == False:
 
-        if keyboard.space:
+        if keyboard.b:
             ball.active = True
             print(f'ball.active: {ball.active}')
-            # ball.y += 10
-            #if ball.x += 10
+           
 
     if ball.active:
         
-        if keyboard.b:
+        if keyboard.space:
             ball.active = False
             print(f'ball.active: {ball.active}')
 
+        # # if ball.right >= WIDTH:
+        #     ball.direction = -ball.dx, ball.dy
+
+        # elif ball.left <= 0:
+        #     ball.direction = ball.dx, -ball.dy
+
         ball.direction = ball.dx, ball.dy
         ball.speed = game.speed
-        ball.move_ip(ball.speed * 10, ball.speed * 10)
+        # ball.move_ip(ball.speed * 3, ball.speed * 3)
+        ball.move_ip(ball.dx, ball.dy)
+
 
 def draw():
     screen.clear()
