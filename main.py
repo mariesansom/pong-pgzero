@@ -76,6 +76,10 @@ def update():
     if ball.colliderect(PADDLE1) or ball.colliderect(PADDLE2):
         print('COLLISION')
         ball.dx = -ball.dx
+    
+    if ball.top <= 0 or ball.bottom >= HEIGHT:
+        ball.dy = -ball.dy
+
 
 
 
