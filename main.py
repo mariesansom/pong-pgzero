@@ -38,14 +38,14 @@ PADDLE2 = Rect((570, 20),(10, PADDLE_LENGTH))
 
 def update():
     
-    if keyboard.s and PADDLE1.y + PADDLE_LENGTH < HEIGHT - 20:
+    if keyboard.s and PADDLE1.bottom <= HEIGHT:
         PADDLE1.y += 10
-    elif keyboard.w and PADDLE1.y > 20:
+    elif keyboard.w and PADDLE1.top >= 0:
         PADDLE1.y -= 10
     
-    if keyboard.down and PADDLE2.y + PADDLE_LENGTH < HEIGHT - 20:
+    if keyboard.down and PADDLE2.bottom <= HEIGHT:
          PADDLE2.y += 10
-    elif keyboard.up and PADDLE2.y > 20:
+    elif keyboard.up and PADDLE2.top >= 0:
         PADDLE2.y -= 10
 
     if not ball.active:
