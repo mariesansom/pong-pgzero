@@ -10,7 +10,7 @@ WHITE = 255, 255, 255
 BLUE = 0, 0, 255
 RED = 255, 0, 0 
 
-SPEED = 1
+SPEED = 3
 DY = -SPEED
 DX = SPEED
 
@@ -19,7 +19,7 @@ class Game():
         self.speed = SPEED
         self.score = 0
 
-class Ball(ZRect):
+class Ball(Rect):
     def __init__(self, *args, dx, dy):
         ZRect.__init__(self, *args)
         self.active = False
@@ -37,6 +37,7 @@ PADDLE1 = Rect((20, 20),(10, PADDLE_LENGTH))
 PADDLE2 = Rect((570, 20),(10, PADDLE_LENGTH))
 
 def update():
+    
     if keyboard.s and PADDLE1.y + PADDLE_LENGTH < HEIGHT - 20:
         PADDLE1.y += 10
     elif keyboard.w and PADDLE1.y > 20:
@@ -71,6 +72,11 @@ def update():
         ball.speed = game.speed
         # ball.move_ip(ball.speed * 3, ball.speed * 3)
         ball.move_ip(ball.dx, ball.dy)
+
+    if ball.colliderect(PADDLE1) or ball.colliderect(PADDLE2):
+        print('COLLISION')
+        ball.dx = -ball.dx
+
 
 
 def draw():
